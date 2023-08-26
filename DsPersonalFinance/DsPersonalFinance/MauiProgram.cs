@@ -1,4 +1,5 @@
-﻿using Microcharts.Maui;
+﻿using DsPersonalFinance.DBServices;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace DsPersonalFinance
@@ -16,9 +17,12 @@ namespace DsPersonalFinance
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            builder.Services.AddSingleton<DBCategoryService>();
+            builder.Services.AddSingleton<DBSubCategoryService>();
+            builder.Services.AddSingleton<DBTransactionTypeService>();
+            builder.Services.AddSingleton<DBTransactionService>();
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
